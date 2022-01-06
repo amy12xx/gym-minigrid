@@ -159,6 +159,6 @@ register(
 )
 
 register(
-    id='MiniGrid-Empty-Random-64x64-v0',
+    id='MiniGrid-Empty-Random-256x256-v0',
     entry_point='gym_minigrid.envs:EmptyRandomEnv256x256'
 )
