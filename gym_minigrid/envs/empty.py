@@ -77,6 +77,22 @@ class EmptyRandomEnv32x32(EmptyEnv):
     def __init__(self):
         super().__init__(size=32, agent_start_pos=None)
 
+class EmptyEnv64x64(EmptyEnv):
+    def __init__(self, **kwargs):
+        super().__init__(size=64, **kwargs)
+
+class EmptyRandomEnv64x64(EmptyEnv):
+    def __init__(self):
+        super().__init__(size=64, agent_start_pos=None)
+
+class EmptyEnv256x256(EmptyEnv):
+    def __init__(self, **kwargs):
+        super().__init__(size=256, **kwargs)
+
+class EmptyRandomEnv256x256(EmptyEnv):
+    def __init__(self):
+        super().__init__(size=256, agent_start_pos=None)
+
 register(
     id='MiniGrid-Empty-5x5-v0',
     entry_point='gym_minigrid.envs:EmptyEnv5x5'
@@ -125,4 +141,24 @@ register(
 register(
     id='MiniGrid-Empty-Random-32x32-v0',
     entry_point='gym_minigrid.envs:EmptyRandomEnv32x32'
+)
+
+register(
+    id='MiniGrid-Empty-64x64-v0',
+    entry_point='gym_minigrid.envs:EmptyEnv64x64'
+)
+
+register(
+    id='MiniGrid-Empty-Random-64x64-v0',
+    entry_point='gym_minigrid.envs:EmptyRandomEnv64x64'
+)
+
+register(
+    id='MiniGrid-Empty-256x256-v0',
+    entry_point='gym_minigrid.envs:EmptyEnv256x256'
+)
+
+register(
+    id='MiniGrid-Empty-Random-64x64-v0',
+    entry_point='gym_minigrid.envs:EmptyRandomEnv256x256'
 )
