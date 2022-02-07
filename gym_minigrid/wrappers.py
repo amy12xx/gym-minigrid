@@ -179,6 +179,9 @@ class RGBImgObsWrapper(gym.core.ObservationWrapper):
             tile_size=self.tile_size
         )
 
+        # render uses (h, w, c), whereas env obs space is defined as (w, h, c)!
+        rgb_img = rgb_img.transpose(1, 0, 2)
+
         return {
             'mission': obs['mission'],
             'image': rgb_img
