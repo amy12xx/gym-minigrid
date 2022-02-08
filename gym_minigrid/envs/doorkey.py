@@ -7,11 +7,11 @@ class DoorKeyEnv(MiniGridEnv):
     """
 
     def __init__(self, size=8, chg_box_color=False):
+        self.chg_box_color = chg_box_color
         super().__init__(
             grid_size=size,
             max_steps=10*size*size
         )
-        self.chg_box_color = chg_box_color
 
     def _gen_grid(self, width, height):
         # Create an empty grid
