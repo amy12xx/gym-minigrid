@@ -6,11 +6,11 @@ class DoorKeyEnv(MiniGridEnv):
     Environment with a door and key, sparse reward
     """
 
-    def __init__(self, size=8, chg_obj_color=False):
+    def __init__(self, size=8, chg_box_color=False):
         super().__init__(
             grid_size=size,
             max_steps=10*size*size
-            self.chg_obj_color=chg_obj_color
+            self.chg_box_color=chg_obj_color
         )
 
     def _gen_grid(self, width, height):
