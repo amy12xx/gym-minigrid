@@ -6,10 +6,11 @@ class DoorKeyEnv(MiniGridEnv):
     Environment with a door and key, sparse reward
     """
 
-    def __init__(self, size=8):
+    def __init__(self, size=8, chg_obj_color=False):
         super().__init__(
             grid_size=size,
             max_steps=10*size*size
+            self.chg_obj_color=chg_obj_color
         )
 
     def _gen_grid(self, width, height):
@@ -30,13 +31,18 @@ class DoorKeyEnv(MiniGridEnv):
         # on the left side of the splitting wall
         self.place_agent(size=(splitIdx, height))
 
+        if self.chg_box_color:
+            color = np.random.choice(COLOR_NAMES)
+        else:
+            color = 'yellow'
+
         # Place a door in the wall
         doorIdx = self._rand_int(1, width-2)
-        self.put_obj(Door('yellow', is_locked=True), splitIdx, doorIdx)
+        self.put_obj(Door(color, is_locked=True), splitIdx, doorIdx)
 
         # Place a yellow key on the left side
         self.place_obj(
-            obj=Key('yellow'),
+            obj=Key(color),
             top=(0, 0),
             size=(splitIdx, height)
         )
