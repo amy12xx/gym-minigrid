@@ -12,9 +12,11 @@ class KeyCorridor(RoomGrid):
         num_rows=3,
         obj_type="ball",
         room_size=6,
-        seed=None
+        seed=None,
+        randomize=False,
     ):
         self.obj_type = obj_type
+        self.randomize = randomize
 
         super().__init__(
             room_size=room_size,
@@ -30,11 +32,16 @@ class KeyCorridor(RoomGrid):
         for j in range(1, self.num_rows):
             self.remove_wall(1, j, 3)
 
+        if self.randomize:
+            color, obj_type = None, None
+        else:
+            color, obj_type = "red", self.obj_type
+
         # Add a locked door on the bottom right
         # Add an object behind the locked door
         room_idx = self._rand_int(0, self.num_rows)
-        door, _ = self.add_door(2, room_idx, 2, locked=True)
-        obj, _ = self.add_object(2, room_idx, kind=self.obj_type)
+        door, _ = self.add_door(2, room_idx, 2, locked=True, color=color)
+        obj, _ = self.add_object(2, room_idx, kind=obj_type, color=color)
 
         # Add a key in a random room on the left side
         self.add_object(0, self._rand_int(0, self.num_rows), 'key', door.color)
@@ -63,7 +70,8 @@ class KeyCorridorS3R1(KeyCorridor):
         super().__init__(
             room_size=3,
             num_rows=1,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 class KeyCorridorS3R2(KeyCorridor):
@@ -71,7 +79,8 @@ class KeyCorridorS3R2(KeyCorridor):
         super().__init__(
             room_size=3,
             num_rows=2,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 class KeyCorridorS3R3(KeyCorridor):
@@ -79,7 +88,8 @@ class KeyCorridorS3R3(KeyCorridor):
         super().__init__(
             room_size=3,
             num_rows=3,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 class KeyCorridorS4R3(KeyCorridor):
@@ -87,7 +97,8 @@ class KeyCorridorS4R3(KeyCorridor):
         super().__init__(
             room_size=4,
             num_rows=3,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 class KeyCorridorS5R3(KeyCorridor):
@@ -95,7 +106,8 @@ class KeyCorridorS5R3(KeyCorridor):
         super().__init__(
             room_size=5,
             num_rows=3,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 class KeyCorridorS6R3(KeyCorridor):
@@ -103,7 +115,8 @@ class KeyCorridorS6R3(KeyCorridor):
         super().__init__(
             room_size=6,
             num_rows=3,
-            seed=seed
+            seed=seed,
+            randomize=False
         )
 
 register(
