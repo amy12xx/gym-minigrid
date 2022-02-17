@@ -7,21 +7,27 @@ class Unlock(RoomGrid):
     Unlock a door
     """
 
-    def __init__(self, seed=None):
+    def __init__(self, seed=None, randomize=False,):
         room_size = 6
+        self.randomize = randomize
         super().__init__(
             num_rows=1,
             num_cols=2,
             room_size=room_size,
             max_steps=8*room_size**2,
-            seed=seed
+            seed=seed,
         )
 
     def _gen_grid(self, width, height):
         super()._gen_grid(width, height)
 
+        if self.randomize:
+            color = None
+        else:
+            color = "yellow"
+
         # Make sure the two rooms are directly connected by a locked door
-        door, _ = self.add_door(0, 0, 0, locked=True)
+        door, _ = self.add_door(0, 0, 0, locked=True, color=color)
         # Add a key to unlock the door
         self.add_object(0, 0, 'key', door.color)
 
