@@ -7,9 +7,9 @@ class Unlock(RoomGrid):
     Unlock a door
     """
 
-    def __init__(self, seed=None, randomize=False,):
+    def __init__(self, seed=None, chg_obj_color=True,):
         room_size = 6
-        self.randomize = randomize
+        self.chg_obj_color = chg_obj_color
         super().__init__(
             num_rows=1,
             num_cols=2,
@@ -21,7 +21,7 @@ class Unlock(RoomGrid):
     def _gen_grid(self, width, height):
         super()._gen_grid(width, height)
 
-        if self.randomize:
+        if self.chg_obj_color:
             color = None
         else:
             color = "yellow"
