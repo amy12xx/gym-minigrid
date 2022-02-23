@@ -7,7 +7,7 @@ class Unlock(RoomGrid):
     Unlock a door
     """
 
-    def __init__(self, seed=None, chg_obj_color=True,):
+    def __init__(self, seed=None, chg_obj_color=False):
         room_size = 6
         self.chg_obj_color = chg_obj_color
         super().__init__(
