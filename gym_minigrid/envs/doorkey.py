@@ -51,15 +51,15 @@ class DoorKeyEnv(MiniGridEnv):
 
 class DoorKeyEnv5x5(DoorKeyEnv):
     def __init__(self, size=5, chg_box_color=False):
-        super().__init__(size=5)
+        super().__init__(size=5, chg_box_color=chg_box_color)
 
 class DoorKeyEnv6x6(DoorKeyEnv):
     def __init__(self, size=6, chg_box_color=False):
-        super().__init__(size=6)
+        super().__init__(size=6, chg_box_color=chg_box_color)
 
 class DoorKeyEnv16x16(DoorKeyEnv):
     def __init__(self, size=16, chg_box_color=False):
-        super().__init__(size=16)
+        super().__init__(size=16, chg_box_color=chg_box_color)
 
 register(
     id='MiniGrid-DoorKey-5x5-v0',
