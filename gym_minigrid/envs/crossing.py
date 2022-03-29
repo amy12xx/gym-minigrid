@@ -9,9 +9,10 @@ class CrossingEnv(MiniGridEnv):
     Environment with wall or lava obstacles, sparse reward.
     """
 
-    def __init__(self, size=9, num_crossings=1, obstacle_type=Lava, seed=None):
+    def __init__(self, size=9, num_crossings=1, obstacle_type=Lava, seed=None, chg_obj_color=False):
         self.num_crossings = num_crossings
         self.obstacle_type = obstacle_type
+        self.chg_obj_color = chg_obj_color
         super().__init__(
             grid_size=size,
             max_steps=4*size*size,
@@ -51,7 +52,14 @@ class CrossingEnv(MiniGridEnv):
             itt.product(rivers_v, range(1, height - 1)),
         )
         for i, j in obstacle_pos:
-            self.put_obj(self.obstacle_type(), i, j)
+            if self.obstacle_type == Wall:
+                if self.chg_obj_color:
+                    color = np.random.choice(COLOR_NAMES)
+                    self.put_obj(self.obstacle_type(color=color), i, j)
+                else:
+                    self.put_obj(self.obstacle_type(), i, j)
+            else:
+                self.put_obj(self.obstacle_type(), i, j)
 
         # Sample path to goal
         path = [h] * len(rivers_v) + [v] * len(rivers_h)
@@ -120,19 +128,19 @@ register(
 
 class SimpleCrossingEnv(CrossingEnv):
     def __init__(self):
-        super().__init__(size=9, num_crossings=1, obstacle_type=Wall)
+        super().__init__(size=9, num_crossings=1, obstacle_type=Wall, chg_obj_color=False)
 
 class SimpleCrossingS9N2Env(CrossingEnv):
     def __init__(self):
-        super().__init__(size=9, num_crossings=2, obstacle_type=Wall)
+        super().__init__(size=9, num_crossings=2, obstacle_type=Wall, chg_obj_color=False)
 
 class SimpleCrossingS9N3Env(CrossingEnv):
     def __init__(self):
-        super().__init__(size=9, num_crossings=3, obstacle_type=Wall)
+        super().__init__(size=9, num_crossings=3, obstacle_type=Wall, chg_obj_color=False)
 
 class SimpleCrossingS11N5Env(CrossingEnv):
     def __init__(self):
-        super().__init__(size=11, num_crossings=5, obstacle_type=Wall)
+        super().__init__(size=11, num_crossings=5, obstacle_type=Wall, chg_obj_color=False)
 
 register(
     id='MiniGrid-SimpleCrossingS9N1-v0',
