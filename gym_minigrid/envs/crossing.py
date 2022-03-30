@@ -126,7 +126,7 @@ register(
     entry_point='gym_minigrid.envs:LavaCrossingS11N5Env'
 )
 
-class SimpleCrossingEnv(CrossingEnv):
+class SimpleCrossingS9N1Env(CrossingEnv):
     def __init__(self):
         super().__init__(size=9, num_crossings=1, obstacle_type=Wall, chg_obj_color=False)
 
@@ -144,7 +144,7 @@ class SimpleCrossingS11N5Env(CrossingEnv):
 
 register(
     id='MiniGrid-SimpleCrossingS9N1-v0',
-    entry_point='gym_minigrid.envs:SimpleCrossingEnv'
+    entry_point='gym_minigrid.envs:SimpleCrossingS9N1Env'
 )
 
 register(
