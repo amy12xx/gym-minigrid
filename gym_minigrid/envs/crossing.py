@@ -54,7 +54,7 @@ class CrossingEnv(MiniGridEnv):
         for i, j in obstacle_pos:
             if self.obstacle_type == Wall:
                 if self.chg_obj_color:
-                    color = np.random.choice(COLOR_NAMES)
+                    color = self.np_random.choice(COLOR_NAMES)
                     self.put_obj(self.obstacle_type(color=color), i, j)
                 else:
                     self.put_obj(self.obstacle_type(), i, j)

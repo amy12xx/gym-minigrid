@@ -32,7 +32,7 @@ class DoorKeyEnv(MiniGridEnv):
         self.place_agent(size=(splitIdx, height))
 
         if self.chg_box_color:
-            color = np.random.choice(COLOR_NAMES)
+            color = self.np_random.choice(COLOR_NAMES)
         else:
             color = 'yellow'
 
